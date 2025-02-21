@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specify the character set for proper text rendering -->
+    <meta charset="UTF-8">
+    
+    <!-- The title of the webpage -->
+    <title>Live2D Model</title>
+    
+    <!-- Include the Live2D Cubism SDK JavaScript file.
+         Adjust the path to where your SDK is located.
+         For example, if you extracted the SDK into a folder named 'live2d_sdk': -->
+    <script src="CubismSdkForWeb-5-r.2/Core/live2dcubismcore.js"></script>
+    
+    <!-- Some basic CSS styling to remove margins and ensure the canvas fills the screen -->
+    <style>
+        body { 
+            margin: 0; 
+            overflow: hidden; /* Prevent scrollbars from appearing */
+        }
+        canvas { 
+            display: block; /* Makes sure the canvas is a block element */
+        }
+    </style>
+</head>
+<body>
+    <!-- A canvas element where the Live2D model will be rendered.
+         The id "live2dCanvas" will be used to reference this element in JavaScript. -->
+    <canvas id="live2dCanvas" width="400" height="400"></canvas>
+    
+    <script>
+        // This function runs once the page has fully loaded.
+        window.onload = function() {
+            // Get a reference to the canvas element where the model will be rendered.
+            var canvas = document.getElementById("live2dCanvas");
+            
+            // Initialize the Live2D Cubism SDK if required.
+            // Depending on the version of the SDK, this call might be needed.
+            Live2D.init();
+
+            // Load and display the Live2D model.
+            // The 'loadModel' function is part of the SDK and takes a configuration object.
+            // Here we set the canvas and the path to our model's JSON file.
+            // Adjust the 'modelJsonPath' to point to your actual model file.
+            Live2D.loadModel({
+                canvas: canvas,
+                modelJsonPath: "haru_greeter_pro_jp/runtime/haru_greeter_t05.model3.json"
+                // Additional configuration options can be added here if needed.
+            });
+
+            // Optionally, you could add more JavaScript functions here to change animations,
+            // such as switching between idle and talking animations.
+        };
+    </script>
+</body>
+</html>
