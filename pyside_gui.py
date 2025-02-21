@@ -4,7 +4,7 @@ from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QComboBox, QTextEdit, QLineEdit, QPushButton
 )
-from PySide6.QtGui import QMovie, QPixmap
+from PySide6.QtGui import QMovie, QPixmap, QTextCursor
 from PySide6.QtCore import QTimer
 
 def get_installed_models():
@@ -96,7 +96,7 @@ class MainWindow(QMainWindow):
         self.avatar_label.setFixedSize(200, 200)
 
         # Load the idle state image as a QPixmap
-        idle_path = ("C:/Users/yagiz/project0/jerma-idle.jpg")
+        idle_path = ("C:/Users/yagiz/project0/jermapic.jpg")
         self.idle_pixmap = QPixmap(idle_path)
         if self.idle_pixmap.isNull():
             print("Error: Idle image failed to load! Check path:", idle_path)
@@ -152,7 +152,7 @@ class MainWindow(QMainWindow):
         # Call the backend to get the model response.
         response = get_llm_response(model, prompt)
         self.chat_display.append(f"Model ({model}): {response}\n")
-        self.chat_display.moveCursor(self.chat_display.textCursor().End)
+        self.chat_display.moveCursor(QTextCursor.End)
 
         # After a delay, switch back to the idle image
         QTimer.singleShot(2000, self.switch_to_idle)
